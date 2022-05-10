@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 // importando telas
 
-import Home from
+import Home from './src/pages/Home'
 
 const Stack= createNativeStackNavigator();
 
