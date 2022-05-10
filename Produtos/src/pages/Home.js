@@ -1,9 +1,10 @@
 import React,{useState,useEffect} from 'react';
 import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar,TouchableOpacity } from 'react-native';
 
+import db from '../config/db'
 // autenticacao e logout  firebase
 //importação do firebase 
-//import db from '../config/db'
+
 /*import { getAuth, signOut } from "firebase/auth";
 
 import { collection,onSnapshot,doc, query } from 'firebase/firestore';*/
