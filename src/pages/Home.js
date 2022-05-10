@@ -22,7 +22,7 @@ const Item = ({ title }) => (
   </View>
 );
 
-const App = () => {
+const Home = () => {
   const renderItem = ({ item }) => (
     <Item title={item.title} />
   );
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Home;
