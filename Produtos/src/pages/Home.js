@@ -5,9 +5,9 @@ import db from '../config/db'
 // autenticacao e logout  firebase
 //importação do firebase 
 
-/*import { getAuth, signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 
-import { collection,onSnapshot,doc, query } from 'firebase/firestore';*/
+import { collection,onSnapshot,doc, query } from 'firebase/firestore';
 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
