@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar,TouchableOpacity } from 'react-native';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar,TouchableOpacity, Alert } from 'react-native';
 
 import db from '../config/db'
 // autenticacao e logout  firebase
@@ -11,58 +11,77 @@ import { collection,onSnapshot,doc, query } from 'firebase/firestore';
 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
-const DATA = [
-  {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
-  },
-  {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
-  },
-  {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Terceiro item',
-  },
-];
 
-const Item = ({ title }) => (
-  <View style={styles.item}>
-    <Text style={styles.title}>{title}</Text>
-  </View>
-);
+export default function Home({navigation,route}){
+  const[produtos,setProdutos]=useState([])
+  useEffect(()=>{
+    const consulta=query(collection(db,"Produto"))
+    const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
+      const lista=[]
+      // for each do select
+      QuerySnapshot.forEach(doc => {
+         lista.push({...doc.data(),id:doc.id});
+      });
+ 
+      // preenchendo hook dos produtos com a lista do select
+      setProdutos(lista)
+      console.log("produtos:"+lista)
+ 
+    })
+   },[])
+  return(
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.Add} onPress={()=>{
+        navigation.navigate("Cadastrar")
+      }}>
+       <Text style={styles.texto}>  <MaterialCommunityIcons name="plus" size={30} color="#fff" /> </Text>
+      </TouchableOpacity>
 
-const Home = () => {
-  const renderItem = ({ item }) => (
-    <Item title={item.title} />
-  );
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
+      <TouchableOpacity style={styles.ButtonLogout} onPress={()=>{
+        Alert.alert("Logout")
+      }}>
+       <Text style={styles.texto}>  <MaterialCommunityIcons name="logout" size={30} color="#fff" /> </Text>
+      </TouchableOpacity>
       
-    </SafeAreaView>
-  );
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    backgroundColor:'#FFF',
+    //marginTop: StatusBar.currentHeight || 0,
   },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+  Add:{
+    position:'absolute', // o position absolute ajuda a fixar no rodape do celular
+    backgroundColor:'#f92e6a',
+    // deixando em formato de circulo 
+    width:60,
+    height:60,
+    borderRadius:50,
+    // fim 
+    justifyContent:'center',
+    alignItems:'center',
+    bottom:40,
+    left:20,
   },
-  title: {
-    fontSize: 32,
+  ButtonLogout:{
+    position:'absolute', // o position absolute ajuda a fixar no rodape do celular
+    backgroundColor:'#f92e6a',
+    // deixando em formato de circulo 
+    width:60,
+    height:60,
+    borderRadius:50,
+    // fim 
+    justifyContent:'center',
+    alignItems:'center',
+    bottom:40,
+    right:20,
   },
+  texto:{
+    color:'#fff',
+  }
+
 });
 
-export default Home;
