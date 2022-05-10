@@ -1,5 +1,14 @@
-import React from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar } from 'react-native';
+import React,{useState,useEffect} from 'react';
+import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar,TouchableOpacity } from 'react-native';
+
+// autenticacao e logout  firebase
+//importação do firebase 
+//import db from '../config/db'
+/*import { getAuth, signOut } from "firebase/auth";
+
+import { collection,onSnapshot,doc, query } from 'firebase/firestore';*/
+
+import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 const DATA = [
   {
