@@ -51,6 +51,13 @@ export default function Cadastrar({navigation,route}){
       }
     }
   }
+
+  // formatacao para R$ real
+  const formatacao=(value)=>{
+    // é um regex
+    // fazer a formatação ainda 
+    setPreco(value)
+  }
   
   return(
     <View style={styles.container}>
@@ -64,7 +71,7 @@ export default function Cadastrar({navigation,route}){
 
           <TextInput placeholder='Preço em reais do produto'
             value={preco}
-            onChangeText={setPreco}
+            onChangeText={( t )=>formatacao( t )}
             keyboardType="numeric"
             style={styles.inputs}
           />
@@ -91,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor:'#FFF',
     alignItems:'center'
-    //marginTop: StatusBar.currentHeight || 0,
+   
   },
   formulario:{
     paddingTop:25
