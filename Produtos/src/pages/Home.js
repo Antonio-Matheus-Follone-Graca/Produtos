@@ -7,13 +7,34 @@ import db from '../config/db'
 
 import { getAuth, signOut } from "firebase/auth";
 
-import { collection,onSnapshot,doc, query } from 'firebase/firestore';
+import { collection,  query, onSnapshot,deleteDoc, doc,}  from "firebase/firestore";
 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 
 export default function Home({navigation,route}){
   const[produtos,setProdutos]=useState([])
+
+  const deletar=(idProduto)=>{
+    //Alert.alert("produto deletado com sucesso","id:"+idProduto)
+
+    Alert.alert(
+      "Deletar Produto",
+      "Tem certeza que quer excluir o produto?",
+      [
+        // se clicar no cancelar nada acontece
+        {
+          text: "Cancelar",
+          //onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        // se clicar no sim, deleta o produto
+        { text: "Sim", onPress: () =>  deleteDoc(doc(db, "produtos",idProduto)) }
+      ]
+    );
+    
+  }
+
   useEffect(()=>{
     const consulta=query(collection(db,"produtos"))
     const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
@@ -29,6 +50,8 @@ export default function Home({navigation,route}){
  
     })
    },[])
+
+   
   return(
     <View style={styles.container}>
       <FlatList
@@ -38,10 +61,23 @@ export default function Home({navigation,route}){
         renderItem={  ({item})=>{
           return(
             <View style={styles.ProdutosFlatlist}> 
-              <Text> {item.nome}</Text>
-              <Text> {item.id}</Text>
-              <Text> {item.descricao}</Text>
-              <Text> {item.preco}</Text>
+              <TouchableOpacity onPress={()=>{
+                deletar(item.id)
+              }}>
+                <MaterialCommunityIcons name="trash-can" color={'#fff'} size={25}/>
+              </TouchableOpacity>
+
+              <TouchableOpacity onPress={()=>{
+                deletar(item.id)
+              }}>
+                <MaterialCommunityIcons name="lead-pencil" color={'#fff'} size={25}/>
+              </TouchableOpacity>
+              
+              <View style={styles.dadosProduto}> 
+                <Text> {item.nome}</Text>
+                <Text> {item.descricao}</Text>
+                <Text> {item.preco} R$</Text>
+              </View>
             </View>
           )
         } }
@@ -98,7 +134,16 @@ const styles = StyleSheet.create({
     color:'#fff',
   },
   ProdutosFlatlist:{
-    width:'100%',
+    width:'95%', // cada produto vai ocupar 100% da tela
+    backgroundColor:'#ddd',
+    marginTop:20,
+    marginLeft:'auto',
+    marginRight:'auto',
+    flexDirection:'row',
+    justifyContent:'space-between'
+  },
+  dadosProduto:{
+    flexDirection:'row'
   }
 
 });
