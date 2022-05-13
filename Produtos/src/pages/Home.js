@@ -31,13 +31,28 @@ export default function Home({navigation,route}){
    },[])
   return(
     <View style={styles.container}>
-      <TouchableOpacity style={styles.Add} onPress={()=>{
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        data={produtos}
+        keyExtractor={item=>item.id}
+        renderItem={  ({item})=>{
+          return(
+            <View style={styles.ProdutosFlatlist}> 
+              <Text> {item.nome}</Text>
+              <Text> {item.id}</Text>
+              <Text> {item.descricao}</Text>
+              <Text> {item.preco}</Text>
+            </View>
+          )
+        } }
+      />
+      <TouchableOpacity style={styles.ButaoAdd} onPress={()=>{
         navigation.navigate("Cadastrar")
       }}>
        <Text style={styles.texto}>  <MaterialCommunityIcons name="plus" size={30} color="#fff" /> </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.ButtonLogout} onPress={()=>{
+      <TouchableOpacity style={styles.ButaoAddLogout} onPress={()=>{
         Alert.alert("Logout")
       }}>
        <Text style={styles.texto}>  <MaterialCommunityIcons name="logout" size={30} color="#fff" /> </Text>
@@ -53,7 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#FFF',
     //marginTop: StatusBar.currentHeight || 0,
   },
-  Add:{
+  ButaoAdd:{
     position:'absolute', // o position absolute ajuda a fixar no rodape do celular
     backgroundColor:'#f92e6a',
     // deixando em formato de circulo 
@@ -66,7 +81,7 @@ const styles = StyleSheet.create({
     bottom:40,
     left:20,
   },
-  ButtonLogout:{
+  ButaoAddLogout:{
     position:'absolute', // o position absolute ajuda a fixar no rodape do celular
     backgroundColor:'#f92e6a',
     // deixando em formato de circulo 
@@ -81,6 +96,9 @@ const styles = StyleSheet.create({
   },
   texto:{
     color:'#fff',
+  },
+  ProdutosFlatlist:{
+    width:'100%',
   }
 
 });
