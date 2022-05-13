@@ -60,19 +60,13 @@ export default function Home({navigation,route}){
         keyExtractor={item=>item.id}
         renderItem={  ({item})=>{
           return(
+            
             <View style={styles.ProdutosFlatlist}> 
               <TouchableOpacity onPress={()=>{
                 deletar(item.id)
               }}>
                 <MaterialCommunityIcons name="trash-can" color={'#fff'} size={25}/>
               </TouchableOpacity>
-
-              <TouchableOpacity onPress={()=>{
-                deletar(item.id)
-              }}>
-                <MaterialCommunityIcons name="lead-pencil" color={'#fff'} size={25}/>
-              </TouchableOpacity>
-              
               <View style={styles.dadosProduto}> 
                 <Text> {item.nome}</Text>
                 <Text> {item.descricao}</Text>
@@ -139,11 +133,10 @@ const styles = StyleSheet.create({
     marginTop:20,
     marginLeft:'auto',
     marginRight:'auto',
-    flexDirection:'row',
-    justifyContent:'space-between'
+    
   },
   dadosProduto:{
-    flexDirection:'row'
+   
   }
 
 });
