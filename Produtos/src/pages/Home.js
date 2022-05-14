@@ -51,7 +51,6 @@ export default function Home({navigation,route}){
  
       // preenchendo hook dos produtos com a lista do select
       setProdutos(lista)
-      console.log("produtos:"+lista)
  
     })
    },[])
