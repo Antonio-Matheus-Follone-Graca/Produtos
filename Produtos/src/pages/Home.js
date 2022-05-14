@@ -15,6 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
 
 
+
 export default function Home({navigation,route}){
   const[produtos,setProdutos]=useState([])
 
@@ -86,9 +87,9 @@ export default function Home({navigation,route}){
                 <Text style={styles.textoDados}> Nome do produto: {item.nome}</Text>
                 <Text style={styles.textoDados}>Descrição: clique aqui para ver a descrição</Text>
                 <View style={styles.iconePreco}>  
-                  <FontAwesomeIcon name="pencil" color={'#000'} size={25}>
+                <MaterialCommunityIcons name="pencil" color={'#000'} size={25}> 
                     <Text style={styles.textoDados}>: {item.preco} </Text>
-                  </FontAwesomeIcon>
+                 </MaterialCommunityIcons> 
                   
                 </View>
               </View>
