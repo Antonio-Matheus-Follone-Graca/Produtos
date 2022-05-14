@@ -11,6 +11,9 @@ import { collection,  query, onSnapshot,deleteDoc, doc,}  from "firebase/firesto
 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
+
+
 
 export default function Home({navigation,route}){
   const[produtos,setProdutos]=useState([])
@@ -62,15 +65,32 @@ export default function Home({navigation,route}){
           return(
             
             <View style={styles.ProdutosFlatlist}> 
-              <TouchableOpacity onPress={()=>{
-                deletar(item.id)
-              }}>
-                <MaterialCommunityIcons name="trash-can" color={'#fff'} size={25}/>
-              </TouchableOpacity>
+              <View style={styles.icones}> 
+                <TouchableOpacity onPress={()=>{
+                  deletar(item.id)
+                }}>
+                
+                <MaterialCommunityIcons name="trash-can" color={'#000'} size={25}/>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={()=>{
+                  deletar(item.id)
+                }}>
+                
+                <MaterialCommunityIcons name="pencil" color={'#000'} size={25}/>
+                </TouchableOpacity>
+
+              </View>
+             
               <View style={styles.dadosProduto}> 
-                <Text> {item.nome}</Text>
-                <Text> {item.descricao}</Text>
-                <Text> {item.preco} R$</Text>
+                <Text style={styles.textoDados}> Nome do produto: {item.nome}</Text>
+                <Text style={styles.textoDados}>Descrição: clique aqui para ver a descrição</Text>
+                <View style={styles.iconePreco}>  
+                  <FontAwesomeIcon name="pencil" color={'#000'} size={25}>
+                    <Text style={styles.textoDados}>: {item.preco} </Text>
+                  </FontAwesomeIcon>
+                  
+                </View>
               </View>
             </View>
           )
@@ -129,14 +149,27 @@ const styles = StyleSheet.create({
   },
   ProdutosFlatlist:{
     width:'95%', // cada produto vai ocupar 100% da tela
-    backgroundColor:'#ddd',
     marginTop:20,
     marginLeft:'auto',
     marginRight:'auto',
     
   },
   dadosProduto:{
-   
+    borderBottomWidth:1,
+    borderBottomColor:'#f92e6a',
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  textoDados:{
+    marginBottom:10,
+    marginTop:10
+  },
+  icones:{
+    justifyContent:'space-between',
+    flexDirection:'row'
+  },
+  iconePreco:{
+    flexDirection:'row'
   }
 
 });
