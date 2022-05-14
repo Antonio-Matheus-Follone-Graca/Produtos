@@ -13,6 +13,7 @@ import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
+import {faBrazilianRealSign} from '@fortawesome/free-solid-svg-icons' 
 
 
 
@@ -87,10 +88,8 @@ export default function Home({navigation,route}){
                 <Text style={styles.textoDados}> Nome do produto: {item.nome}</Text>
                 <Text style={styles.textoDados}>Descrição: clique aqui para ver a descrição</Text>
                 <View style={styles.iconePreco}>  
-                <MaterialCommunityIcons name="pencil" color={'#000'} size={25}> 
-                    <Text style={styles.textoDados}>: {item.preco} </Text>
-                 </MaterialCommunityIcons> 
-                  
+                  <FontAwesomeIcon icon={faBrazilianRealSign}  size={20} color="#7CFC00"/>
+                  <Text style={{fontSize:20,fontWeight:'bold'}}> {item.preco} </Text>
                 </View>
               </View>
             </View>
