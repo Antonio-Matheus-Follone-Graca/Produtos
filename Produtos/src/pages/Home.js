@@ -80,12 +80,12 @@ export default function Home({navigation,route}){
                   <TouchableOpacity onPress={()=>{
                     navigation.navigate('Alterar',{
                       idProduto:item.id,
-                      descricao:item.descricao,
-                      nomeProduto:item.nome,
-                      preco:item.preco,
+                      descricaoNova:item.descricao,
+                      nomeProdutoNovo:item.nome,
+                      precoNovo:item.preco
                       
                     })
-                    console.log(idProduto+":"+preco)
+                   
                   }}>
                   
                   

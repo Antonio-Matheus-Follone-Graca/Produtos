@@ -1,5 +1,5 @@
-import React,{useState,useEffect} from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar,TouchableOpacity, Alert, TextInput, Button } from 'react-native';
+import React,{useState} from 'react';
+import {  View,  StyleSheet, Text, TouchableOpacity,  TextInput } from 'react-native';
 
 import db from '../config/db'
 // importando o que vou usar 
@@ -13,22 +13,21 @@ import { doc, updateDoc } from "firebase/firestore";
 
 
 export default function Alterar({navigation,route}){
-
     let idProduto=route.params.idProduto
-    const[nomeProduto,setNomeProduto]=useState(route.params.nomeProduto)
-    const[preco,setPreco]=useState(route.params.preco)
-    const[descricao,setDescricao]=useState(route.params.descricao)
+    const[nomeProdutoNovo,setNomeProdutoNovo]=useState(route.params.nomeProdutoNovo)
+    const[precoNovo,setPrecoNovo]=useState(route.params.precoNovo)
+    const[descricaoNova,setDescricaoNova]=useState(route.params.descricaoNova)
 
-  function editar(descricaoNova,idProduto,precoNovo,nomeProduto){
+  const editar=(descricaoNova,idProduto,precoNovo,nomeProduto)=>{
     // doc(banco de dados, documento e parametro){
         // campo que quero mudar 
     //}
-    /*updateDoc(doc(db,"produtos",idProduto),{
+    updateDoc(doc(db,"produtos",route.params.idProduto),{
         descricao:descricaoNova,
         preco:precoNovo,
         nome:nomeProduto
     })
-    navigation.navigate('Home')*/
+    navigation.navigate('Home')
     
   
 }
@@ -39,7 +38,7 @@ export default function Alterar({navigation,route}){
   const formatacao=(value)=>{
     // é um regex
     // fazer a formatação ainda 
-    setPreco(value)
+    setPrecoNovo(value)
   }
   
   return(
@@ -47,21 +46,21 @@ export default function Alterar({navigation,route}){
       <Text style={styles.titulo}> Alterar Produto</Text>
         <View style={styles.formulario}> 
           <TextInput placeholder='Nome do produto'
-            value={nomeProduto}
-            onChangeText={setNomeProduto}
+            value={nomeProdutoNovo}
+            onChangeText={setNomeProdutoNovo}
             style={styles.inputs}
           />
 
           <TextInput placeholder='Preço em reais do produto'
-            value={preco}
+            value={precoNovo}
             onChangeText={( t )=>formatacao( t )}
             keyboardType="numeric"
             style={styles.inputs}
           />
           
           <TextInput placeholder='Descrição(opcional)'
-            value={descricao}
-            onChangeText={setDescricao}
+            value={descricaoNova}
+            onChangeText={setDescricaoNova}
             style={styles.inputDescricao}
             multiline={true}
             numberOfLines={4}
@@ -69,7 +68,7 @@ export default function Alterar({navigation,route}){
             
           />
       </View>
-      <TouchableOpacity style={styles.button} onPress={editar(descricao,idProduto,preco,nomeProduto)}>
+      <TouchableOpacity style={styles.button} onPress={editar(descricaoNova,idProduto,precoNovo,nomeProdutoNovo)}>
         <Text style={styles.text}> Atualizar  </Text>
       </TouchableOpacity>
     </View>
