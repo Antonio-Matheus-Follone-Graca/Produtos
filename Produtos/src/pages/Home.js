@@ -66,30 +66,31 @@ export default function Home({navigation,route}){
           return(
             
             <View style={styles.ProdutosFlatlist}> 
-              <View style={styles.icones}> 
-                <TouchableOpacity onPress={()=>{
-                  deletar(item.id)
-                }}>
-                
-                <MaterialCommunityIcons name="trash-can" color={'#000'} size={25}/>
-                </TouchableOpacity>
+              <View style={styles.StyleProdutos}> 
+                <View style={styles.icones}> 
+                  <TouchableOpacity onPress={()=>{
+                    deletar(item.id)
+                  }}>
+                  
+                  <MaterialCommunityIcons name="trash-can" color={'#f92e6a'} size={25}/>
+                  </TouchableOpacity>
 
-                <TouchableOpacity onPress={()=>{
-                  deletar(item.id)
-                }}>
-                
-                <MaterialCommunityIcons name="pencil" color={'#000'} size={25}/>
-                </TouchableOpacity>
-
-              </View>
-             
-              <View style={styles.dadosProduto}> 
-                <Text style={styles.textoDados}> Nome do produto: {item.nome}</Text>
-                <Text style={styles.textoDados}>Descrição: clique aqui para ver a descrição</Text>
+                  <TouchableOpacity onPress={()=>{
+                    deletar(item.id)
+                  }}>
+                  
+                  <MaterialCommunityIcons name="pencil" color={'#f92e6a'} size={25}/>
+                  </TouchableOpacity>
+                  
+                </View>
+              <View style={styles.StyleInfo}> 
+                <Text style={styles.textoDados}> {item.nome}</Text>
                 <View style={styles.iconePreco}>  
                   <FontAwesomeIcon icon={faBrazilianRealSign}  size={20} color="#7CFC00"/>
                   <Text style={{fontSize:20,fontWeight:'bold'}}> {item.preco} </Text>
                 </View>
+              </View>
+              
               </View>
             </View>
           )
@@ -153,22 +154,28 @@ const styles = StyleSheet.create({
     marginRight:'auto',
     
   },
-  dadosProduto:{
-    borderBottomWidth:1,
-    borderBottomColor:'#f92e6a',
-    justifyContent:'center',
-    alignItems:'center',
+  StyleProdutos:{
+    backgroundColor:'#f5f5f5cf',
+   
   },
   textoDados:{
     marginBottom:10,
-    marginTop:10
+    marginTop:10,
+    marginRight:10,
+    color:'#000',
+    fontWeight:'bold'
+  },
+  StyleInfo:{
+    justifyContent:'center',
+    alignItems:'center',
+    flexDirection:'row'
   },
   icones:{
     justifyContent:'space-between',
     flexDirection:'row'
   },
   iconePreco:{
-    flexDirection:'row'
+    flexDirection:'row',
   }
 
 });
