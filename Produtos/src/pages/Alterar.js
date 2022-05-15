@@ -68,7 +68,7 @@ export default function Alterar({navigation,route}){
             
           />
       </View>
-      <TouchableOpacity style={styles.button} onPress={editar(descricaoNova,idProduto,precoNovo,nomeProdutoNovo)}>
+      <TouchableOpacity style={styles.button} onPress={editar(descricaoNova,idProduto,precoNovo,nomeProduto)}>
         <Text style={styles.text}> Atualizar  </Text>
       </TouchableOpacity>
     </View>
