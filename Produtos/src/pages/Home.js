@@ -62,7 +62,6 @@ export default function Home({navigation,route}){
         showsVerticalScrollIndicator={false}
         data={produtos}
         keyExtractor={item=>item.id}
-      
         renderItem={  ({item})=>{
           return(
             
