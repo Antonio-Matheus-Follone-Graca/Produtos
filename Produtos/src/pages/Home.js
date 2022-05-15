@@ -72,14 +72,23 @@ export default function Home({navigation,route}){
                     deletar(item.id)
                   }}>
                   
-                  <MaterialCommunityIcons name="trash-can" color={'#f92e6a'} size={25}/>
+                  
+                  <MaterialCommunityIcons name="trash-can" color={'#f92e6a'} size={25}/> 
+                 
                   </TouchableOpacity>
 
                   <TouchableOpacity onPress={()=>{
-                    deletar(item.id)
+                    navigation.navigate('Alterar',{
+                      idProduto:item.id,
+                      descricao:item.descricao,
+                      nome:item.nome
+                    })
+                   
                   }}>
                   
+                  
                   <MaterialCommunityIcons name="pencil" color={'#f92e6a'} size={25}/>
+                   
                   </TouchableOpacity>
                   
                 </View>
@@ -148,7 +157,7 @@ const styles = StyleSheet.create({
     color:'#fff',
   },
   ProdutosFlatlist:{
-    width:'95%', // cada produto vai ocupar 100% da tela
+    width:'100%', // cada produto vai ocupar 100% da tela
     marginTop:20,
     marginLeft:'auto',
     marginRight:'auto',
@@ -172,7 +181,9 @@ const styles = StyleSheet.create({
   },
   icones:{
     justifyContent:'space-between',
-    flexDirection:'row'
+    flexDirection:'row',
+    marginLeft:15,
+    marginRight:15
   },
   iconePreco:{
     flexDirection:'row',
