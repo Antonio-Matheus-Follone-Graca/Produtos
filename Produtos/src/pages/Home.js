@@ -81,9 +81,11 @@ export default function Home({navigation,route}){
                     navigation.navigate('Alterar',{
                       idProduto:item.id,
                       descricao:item.descricao,
-                      nome:item.nome
+                      nomeProduto:item.nome,
+                      preco:item.preco,
+                      
                     })
-                   
+                    console.log(idProduto+":"+preco)
                   }}>
                   
                   

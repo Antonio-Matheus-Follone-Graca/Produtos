@@ -8,6 +8,8 @@ import Home from './src/pages/Home'
 
 import Cadastrar from './src/pages/Cadastrar'
 
+import Alterar from './src/pages/Alterar'
+
 const Stack= createNativeStackNavigator();
 
 export default function App(){
@@ -23,6 +25,13 @@ export default function App(){
 
       <Stack.Screen name="Cadastrar"
           component={Cadastrar}
+          options={{
+            headerTintColor:'#f92e6a'
+          }}
+        />
+
+      <Stack.Screen name="Alterar"
+          component={Alterar}
           options={{
             headerTintColor:'#f92e6a'
           }}
