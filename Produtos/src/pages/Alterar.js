@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {  View,  StyleSheet, Text, TouchableOpacity,  TextInput } from 'react-native';
+import {  View,  StyleSheet, Text, TouchableOpacity,  TextInput, Alert } from 'react-native';
 
 import db from '../config/db'
 // importando o que vou usar 
@@ -18,19 +18,24 @@ export default function Alterar({navigation,route}){
     const[precoNovo,setPrecoNovo]=useState(route.params.precoNovo)
     const[descricaoNova,setDescricaoNova]=useState(route.params.descricaoNova)
 
-  const editar=(descricaoNova,idProduto,precoNovo,nomeProduto)=>{
-    // doc(banco de dados, documento e parametro){
-        // campo que quero mudar 
-    //}
+  function editar(descricaoNova,idProduto,precoNovo,nomeProduto){
+      if(nomeProduto==='' || precoNovo==='' ){
+        Alert.alert("Preencha os campos",'nome e preço')
+      }
+      else{
+       
     updateDoc(doc(db,"produtos",route.params.idProduto),{
         descricao:descricaoNova,
         preco:precoNovo,
         nome:nomeProduto
     })
     navigation.navigate('Home')
+      }
+   
     
   
 }
+ 
 
 
 
@@ -68,7 +73,7 @@ export default function Alterar({navigation,route}){
             
           />
       </View>
-      <TouchableOpacity style={styles.button} onPress={editar(descricaoNova,idProduto,precoNovo,nomeProduto)}>
+      <TouchableOpacity style={styles.button} onPress={()=>editar(descricaoNova,idProduto,precoNovo,nomeProdutoNovo)}>
         <Text style={styles.text}> Atualizar  </Text>
       </TouchableOpacity>
     </View>

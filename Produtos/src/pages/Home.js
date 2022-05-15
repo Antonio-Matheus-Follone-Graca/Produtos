@@ -189,6 +189,9 @@ const styles = StyleSheet.create({
   },
   iconePreco:{
     flexDirection:'row',
+    // alinha o iconde de real ao valor 
+    justifyContent:'center',
+    alignItems:'center'
   }
 
 });
