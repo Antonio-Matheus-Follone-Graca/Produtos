@@ -67,8 +67,8 @@ export default function Home({navigation,route}){
             
             <View style={styles.ProdutosFlatlist}> 
               <View style={styles.StyleProdutos}> 
-                <View style={styles.icones}> 
-                  <TouchableOpacity onPress={()=>{
+                  <View style={styles.icones}> 
+                    <TouchableOpacity onPress={()=>{
                     deletar(item.id)
                   }}>
                   
@@ -93,14 +93,14 @@ export default function Home({navigation,route}){
                    
                   </TouchableOpacity>
                   
-                </View>
-              <View style={styles.StyleInfo}> 
-                <Text style={styles.textoDados}> {item.nome}</Text>
-                <View style={styles.iconePreco}>  
-                  <FontAwesomeIcon icon={faBrazilianRealSign}  size={20} color="#7CFC00"/>
-                  <Text style={{fontSize:20,fontWeight:'bold'}}> {item.preco} </Text>
-                </View>
-              </View>
+                  </View>
+                  <View style={styles.StyleInfo}> 
+                    <Text style={styles.textoDados}> {item.nome}</Text>
+                    <View style={styles.iconePreco}>  
+                      <FontAwesomeIcon icon={faBrazilianRealSign}  size={20} color="#7CFC00"/>
+                      <Text style={{fontSize:20,fontWeight:'bold'}}> {item.preco} </Text>
+                    </View>
+                  </View>
               
               </View>
             </View>
