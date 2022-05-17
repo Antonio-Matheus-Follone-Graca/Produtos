@@ -18,7 +18,7 @@ import db from '../config/db'
 
 import { getAuth, signInWithEmailAndPassword,onAuthStateChanged   } from "firebase/auth";
 
-export default  function Login({navigation}){
+export default  function LoginUsuario({navigation}){
     const [email,setEmail]=useState('teste@gmail.com')
     const [password,setPassword]=useState('123456')
     return (

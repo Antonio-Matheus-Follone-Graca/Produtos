@@ -12,14 +12,14 @@ import Alterar from './src/pages/Alterar'
 
 import CadastrarUsuario from "./src/pages/CadastrarUsuario";
 
-import LoginUsuario from './src/pages/Login'
+import LoginUsuario from './src/pages/LoginUsuario'
 
 const Stack= createNativeStackNavigator();
 
 export default function App(){
   return(
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="LoginUsuario">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home"
           component={Home}
           options={{
