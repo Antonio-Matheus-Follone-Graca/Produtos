@@ -45,7 +45,7 @@ export default function Home({navigation,route}){
     signOut(auth).then(() => {
         // logout  deu certo
         // redireciona para tela de login 
-        navigation.navigate('Login')
+        navigation.navigate('LoginUsuario')
 
     }).catch((error) => {
         // se um erro aconteceu
