@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
     paddingTop:25
   },
   inputs:{
+    backgroundColor:'#000',
     borderBottomWidth:1,
     borderBottomColor:'#f92e6a',
     marginTop:10, // espaçamento entre os campos
