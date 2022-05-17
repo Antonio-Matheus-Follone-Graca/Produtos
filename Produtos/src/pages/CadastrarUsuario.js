@@ -88,7 +88,7 @@ export default function LoginECadastro({navigation}) {
  
   }
 
-  useEffect(()=>{
+  /*useEffect(()=>{
     // ao carregar a tela verifica se o usuario esta logado
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
@@ -102,7 +102,7 @@ export default function LoginECadastro({navigation}) {
 
     });
 
-},[]);
+},[]);*/
   return (
    
   <KeyboardAvoidingView style={styles.container}
