@@ -40,6 +40,18 @@ export default function Home({navigation,route}){
     
   }
 
+  function logout (){
+    const auth = getAuth();
+    signOut(auth).then(() => {
+        // logout  deu certo
+        // redireciona para tela de login 
+        navigation.navigate('Login')
+
+    }).catch((error) => {
+        // se um erro aconteceu
+    }); 
+}
+
   useEffect(()=>{
     const consulta=query(collection(db,"produtos"))
     const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
@@ -113,9 +125,7 @@ export default function Home({navigation,route}){
        <Text style={styles.texto}>  <MaterialCommunityIcons name="plus" size={30} color="#fff" /> </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.ButaoAddLogout} onPress={()=>{
-        Alert.alert("Logout")
-      }}>
+      <TouchableOpacity style={styles.ButaoAddLogout} onPress={()=>{logout()}}>
        <Text style={styles.texto}>  <MaterialCommunityIcons name="logout" size={30} color="#fff" /> </Text>
       </TouchableOpacity>
       

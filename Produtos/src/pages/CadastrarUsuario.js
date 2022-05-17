@@ -152,7 +152,7 @@ export default function LoginECadastro({navigation}) {
 
         </TouchableOpacity>
         : null}
-      <TouchableOpacity style={styles.Button} onPress={()=>Cadastro}>
+      <TouchableOpacity style={styles.Button} onPress={()=>{Cadastro()}}>
 
         <Text style={styles.textLogin}>Cadastrar   </Text>
       </TouchableOpacity>
