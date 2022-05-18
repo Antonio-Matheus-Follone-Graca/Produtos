@@ -68,8 +68,7 @@ export default function Home({navigation,route}){
    },[])
 
    
-  return(
-    <View style={styles.container}>
+  return(<View style={styles.container}>
       {/* ao tirar a flatlist some o erro*/ }
       <FlatList
         showsVerticalScrollIndicator={false}
@@ -127,8 +126,7 @@ export default function Home({navigation,route}){
        <Text style={styles.texto}>  <MaterialCommunityIcons name="logout" size={30} color="#fff" /> </Text>
       </TouchableOpacity>
       
-    </View>
-  )
+    </View>)
 }
 
 const styles = StyleSheet.create({
