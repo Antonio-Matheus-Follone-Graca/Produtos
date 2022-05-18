@@ -20,6 +20,7 @@ export default function App(){
   return(
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginUsuario">
+        
         <Stack.Screen name="Home"
           component={Home}
           options={{
@@ -41,11 +42,11 @@ export default function App(){
           }}
         />
 
-      <Stack.Screen name="Criar conta"
+      <Stack.Screen name="CadastrarUsuario"
           component={CadastrarUsuario}
           options={{
             headerTintColor:'#f92e6a',
-            headerShown:'false'
+            headerShown:false
            
           }}
         />
@@ -54,7 +55,7 @@ export default function App(){
           component={LoginUsuario}
           options={{
             headerTintColor:'#f92e6a',
-            headerShown:'false'
+            headerShown:false
            
           }}
         />

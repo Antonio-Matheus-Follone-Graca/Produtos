@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView
+  SafeAreaView,
+  Alert
  } from 'react-native';
 
  // importando icones
@@ -35,57 +36,69 @@ export default function LoginECadastro({navigation}) {
   // hooks dos campos do formulario 
   const [email,setEmail]=useState('teste@gmail.com')
   const [password,setPassword]=useState('123456')
-  const [nome,setNome]=useState('matheus')
+  const [nome,setNome]=useState('USUARIO TESTE')
   const[error,setError]=useState('')
-  // hook de mostrar senha
-  const[isPageCadastro,setIsPageCadastro]=useState(true)
+ 
 
-  // funcao de login 
-  
-  const Cadastro=()=>{
+  // funcao de validar campos 
+
+  const validar=()=>{
     if(nome===''){  
-        setError("Preencha o campo nome")
-      }
-       // fazendo as VALIDAÇÕES do formulario
+      setError("Preencha o campo nome")
+      return false
+    }
+     // fazendo as VALIDAÇÕES do formulario
     else if (email==='' || (!email.includes('@'))){
         setError("Email incorreto")
+        return false
         }
     else if(password===''){
         setError("Senha vazia")
+        return false
       }
     else if(password.length<6){
         setError("Senha deve ser de no mínimo 6 caracteres")
+        return false
       }
-      // código do cadastro
-      else{ 
-            createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+    else{
+     
+      return true
+    }
+  }
+  
+  const Cadastro=()=>{
+    if(!validar()){
+     return null 
+    }
+    else
+    {
+       
+        const auth = getAuth();
+          // código do cadastro
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
             // se o usuario foi criado com sucesso
             let user = userCredential.user;
             // criando documento usuario 
-             setDoc(doc(db, "usuarios",user.uid ), {
+              setDoc(doc(db, "usuarios",user.uid ), {
               nome: nome,
+              });
+              // redirecionando para a tela de login 
+             /* navigation.navigate("Home",{
+                idUser:user.uid, // pegando id do usuario logado
+                nomeUsuarioLogado:nome,
+            })*/
+         })
+          .catch((error) => {
+              let errorCode = error.code;
+              let errorMessage = error.message;
+              setError(errorMessage)
+                
             });
-            
-            // redirecionando para a tela de login 
-            /*navigation.navigate("Home",{
-              idUser:user.uid, // pegando id do usuario logado
-              nomeUsuarioLogado:nome,
-          })*/
-        })
-        .catch((error) => {
-            let errorCode = error.code;
-            let errorMessage = error.message;
-           setError(errorMessage)
-            
-        });
         
-        
-       
-     
-      } 
-    
- 
+    }
+  
+   
   }
 
   /*useEffect(()=>{
@@ -109,18 +122,12 @@ export default function LoginECadastro({navigation}) {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
      <StatusBar/>
-      <Text style={styles.title}> {isPageCadastro ? 'Criar conta ' : 'Login'}</Text>
+      <Text style={styles.title}> Criar conta </Text>
         <TextInput placeholder='Nome'
             onChangeText={(nome) => setNome(nome)}
             value={nome}
             style={styles.input}
         /> 
-
-  
-
-
-
-
       <TextInput placeholder='Email'
         onChangeText={(email) => setEmail(email)}
         value={email}
@@ -160,7 +167,7 @@ export default function LoginECadastro({navigation}) {
       <View style={{ flexDirection: "row" }}>
         <Text> 'Já possui uma conta?'  </Text>
         <TouchableOpacity style={styles.Link} onPress={() => {
-         navigation.navigate('Login')
+         navigation.navigate('LoginUsuario')
         
         } }>
           <Text style={styles.textLink}> clique aqui para logar   </Text>
