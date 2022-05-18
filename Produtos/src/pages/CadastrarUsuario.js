@@ -68,10 +68,10 @@ export default function LoginECadastro({navigation}) {
             });
             
             // redirecionando para a tela de login 
-            navigation.navigate("Home",{
+            /*navigation.navigate("Home",{
               idUser:user.uid, // pegando id do usuario logado
               nomeUsuarioLogado:nome,
-          })
+          })*/
         })
         .catch((error) => {
             let errorCode = error.code;
