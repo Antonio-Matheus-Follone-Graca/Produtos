@@ -15,8 +15,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
 import {faBrazilianRealSign} from '@fortawesome/free-solid-svg-icons' 
 
-import AsyncStorageLib from '@react-native-async-storage/async-storage';
 
+
+import AsyncStorageLib from '@react-native-async-storage/async-storage';
 
 
 export default function Home({navigation,route}){
@@ -55,11 +56,34 @@ export default function Home({navigation,route}){
     }); 
 }
 
-// funcao que faz um select nos dados do usuario
- const buscar=async
+// funcao que faz um select nos dados do ptofuyo do usuario usuario
+async  function buscar(){
+    const consulta=query(collection(db,"produtos"))
+    const arrays=onSnapshot(consulta,(QuerySnapshot)=>
+    {
+      const lista=[]
+      // for each do select
+      QuerySnapshot.forEach(doc => {
+         lista.push({...doc.data(),id:doc.id});
+      });
+ 
+      // preenchendo hook dos produtos com a lista do select
+   
+      setProdutos(lista)
+      console.log(produtos)
+      console.log(lista)
+      console.log('funcao rodando')
+     
+      
+    })
+ }
 
 useEffect(()=>{
-      
+      //await buscar()
+      buscar()
+
+
+
   // selecionando o banco e coleção 
 
   // // o id do usuario logado  seria a chave estrangeira da tabela task, para pegar tasks só dele
@@ -87,7 +111,7 @@ useEffect(()=>{
      
       
     })
-    setLoading(false)
+   
    } ,[])*/
 
    
