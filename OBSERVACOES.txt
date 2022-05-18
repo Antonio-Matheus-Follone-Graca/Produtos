@@ -1,0 +1,7 @@
+embora fale que seja um erro de scroll view 
+
+nao estou usando scroll view, apenas flatlist 
+
+entre na pasta produtos que é onde está o projeto 
+
+muito obrigado pela ajuda 
