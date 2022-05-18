@@ -81,7 +81,7 @@ async  function buscar(){
 useEffect(()=>{
       //await buscar()
       buscar()
-
+     
 
 
   // selecionando o banco e coleção 
