@@ -53,20 +53,22 @@ export default function Home({navigation,route}){
     }); 
 }
 
-  useEffect(()=>{
+  useEffect(()=>
+  {
     const consulta=query(collection(db,"produtos"))
-    const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
-      const lista=[]
-      // for each do select
-      QuerySnapshot.forEach(doc => {
-         lista.push({...doc.data(),id:doc.id});
-      });
- 
-      // preenchendo hook dos produtos com a lista do select
-   
-      setProdutos(lista)
-      console.log(produtos)
-      console.log(lista)
+    const arrays=onSnapshot(consulta,(QuerySnapshot)=>
+    {
+        const lista=[]
+        // for each do select
+        QuerySnapshot.forEach(doc => {
+          lista.push({...doc.data(),id:doc.id});
+        });
+  
+        // preenchendo hook dos produtos com a lista do select
+    
+        setProdutos(lista)
+        console.log(produtos)
+        console.log(lista)
      
       
     })
