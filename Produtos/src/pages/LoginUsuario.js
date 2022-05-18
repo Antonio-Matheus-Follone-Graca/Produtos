@@ -21,9 +21,7 @@ import { getAuth, signInWithEmailAndPassword,onAuthStateChanged   } from "fireba
 export default  function LoginUsuario({navigation}){
     const [email,setEmail]=useState('teste@gmail.com')
     const [password,setPassword]=useState('123456')
-    return (
-      
-      <View style={styles.container}>
+    return (<View style={styles.container}>
             <View style={styles.formulario}> 
             <TextInput placeholder='Nome do produto'
             value={email}
@@ -31,11 +29,7 @@ export default  function LoginUsuario({navigation}){
             style={styles.inputs}
           />
             </View>
-        </View>
-          
-          
-        
-    )
+        </View>)
 }
 
 const styles = StyleSheet.create({
