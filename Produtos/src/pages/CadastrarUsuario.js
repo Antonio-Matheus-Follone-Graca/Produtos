@@ -67,30 +67,35 @@ export default function LoginECadastro({navigation}) {
   }
   
   const Cadastro=()=>{
+    const auth = getAuth();
     if(!validar()){
      return null 
     }
     else
     {
        
-        const auth = getAuth();
+       
           // código do cadastro
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             // se o usuario foi criado com sucesso
             let user = userCredential.user;
-            // criando documento usuario 
-              setDoc(doc(db, "usuarios",user.uid ), {
-              nome: nome,
-              });
               // redirecionando para a tela de login 
-              navigation.navigate("Home") 
+              navigation.navigate("Home",{
+                idUser:user.uid
+              }) 
              /*,{
                 idUser:user.uid, // pegando id do usuario logado
                 nomeUsuarioLogado:nome,
             })*/
          })
           .catch((error) => {
+            if(password.length<6){
+              setError("senha deve ser de no minimo 6 caracteres ")
+          }
+            if(email.includes('@')){
+              setError("email em uso, use outro  ")
+            }
               let errorCode = error.code;
               let errorMessage = error.message;
               setError(errorMessage)
@@ -160,7 +165,7 @@ export default function LoginECadastro({navigation}) {
 
         </TouchableOpacity>
         : null}
-      <TouchableOpacity style={styles.Button} onPress={()=>{Cadastro()}}>
+      <TouchableOpacity style={styles.Button} onPress={Cadastro}>
 
         <Text style={styles.textLogin}>Cadastrar   </Text>
       </TouchableOpacity>
