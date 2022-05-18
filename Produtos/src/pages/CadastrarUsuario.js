@@ -74,7 +74,6 @@ export default function LoginECadastro({navigation}) {
     else
     {
        
-       
           // código do cadastro
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {

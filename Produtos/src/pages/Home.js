@@ -15,11 +15,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
 
 import {faBrazilianRealSign} from '@fortawesome/free-solid-svg-icons' 
 
+import AsyncStorageLib from '@react-native-async-storage/async-storage';
+
 
 
 export default function Home({navigation,route}){
   const[produtos,setProdutos]=useState([])
-  const[loading,setLoading]=useState(true )
+  const[loading,setLoading]=useState(true)
 
   const deletar=(idProduto)=>{
     //Alert.alert("produto deletado com sucesso","id:"+idProduto)
@@ -53,7 +55,20 @@ export default function Home({navigation,route}){
     }); 
 }
 
-  useEffect(()=>
+// funcao que faz um select nos dados do usuario
+ const buscar=async
+
+useEffect(()=>{
+      
+  // selecionando o banco e coleção 
+
+  // // o id do usuario logado  seria a chave estrangeira da tabela task, para pegar tasks só dele
+  
+
+
+
+},[])
+ /* useEffect(()=>
   {
     const consulta=query(collection(db,"produtos"))
     const arrays=onSnapshot(consulta,(QuerySnapshot)=>
@@ -73,30 +88,31 @@ export default function Home({navigation,route}){
       
     })
     setLoading(false)
-   } ,[])
+   } ,[])*/
 
    
   return(<View style={styles.container}>
-      {!loading &&<FlatList
+      {!loading ?<FlatList
         showsVerticalScrollIndicator={false}
         data={produtos}
         keyExtractor={item=>item.id}
         renderItem={  ({item})=>{
-          return(<Text> texto</Text>)
+          return(<Text> {item.id}</Text>)
         } }
       /> 
-       }
+       : <Text> texto</Text>}
       <TouchableOpacity style={styles.ButaoAdd} onPress={()=>{
         navigation.navigate("Cadastrar")
       }}>
        <Text style={styles.texto}>  <MaterialCommunityIcons name="plus" size={30} color="#fff" /> </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.ButaoAddLogout} onPress={logout}>
+      <TouchableOpacity style={styles.ButaoAddLogout} onPress={()=>logout()}>
        <Text style={styles.texto}>  <MaterialCommunityIcons name="logout" size={30} color="#fff" /> </Text>
       </TouchableOpacity>
       
-    </View>)
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
