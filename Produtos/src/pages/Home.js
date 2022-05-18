@@ -17,12 +17,8 @@ import {faBrazilianRealSign} from '@fortawesome/free-solid-svg-icons'
 
 
 
-import AsyncStorageLib from '@react-native-async-storage/async-storage';
-
-
 export default function Home({navigation,route}){
   const[produtos,setProdutos]=useState([])
-  const[loading,setLoading]=useState(true)
 
   const deletar=(idProduto)=>{
     //Alert.alert("produto deletado com sucesso","id:"+idProduto)
@@ -56,11 +52,9 @@ export default function Home({navigation,route}){
     }); 
 }
 
-// funcao que faz um select nos dados do ptofuyo do usuario usuario
-async  function buscar(){
+  useEffect(()=>{
     const consulta=query(collection(db,"produtos"))
-    const arrays=onSnapshot(consulta,(QuerySnapshot)=>
-    {
+    const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
       const lista=[]
       // for each do select
       QuerySnapshot.forEach(doc => {
@@ -68,70 +62,68 @@ async  function buscar(){
       });
  
       // preenchendo hook dos produtos com a lista do select
-   
       setProdutos(lista)
-      console.log(produtos)
-      console.log(lista)
-      console.log('funcao rodando')
-     
-      
-    })
- }
-
-useEffect(()=>{
-      //await buscar()
-      buscar()
-     
-
-
-  // selecionando o banco e coleção 
-
-  // // o id do usuario logado  seria a chave estrangeira da tabela task, para pegar tasks só dele
-  
-
-
-
-},[])
- /* useEffect(()=>
-  {
-    const consulta=query(collection(db,"produtos"))
-    const arrays=onSnapshot(consulta,(QuerySnapshot)=>
-    {
-      const lista=[]
-      // for each do select
-      QuerySnapshot.forEach(doc => {
-         lista.push({...doc.data(),id:doc.id});
-      });
  
-      // preenchendo hook dos produtos com a lista do select
-   
-      setProdutos(lista)
-      console.log(produtos)
-      console.log(lista)
-     
-      
     })
-   
-   } ,[])*/
+   },[])
 
    
-  return(<View style={styles.container}>
-      {!loading ?<FlatList
+  return(
+    <View style={styles.container}>
+      {/* ao tirar a flatlist some o erro não faco a menor ideia do por quê*/ }
+      <FlatList
         showsVerticalScrollIndicator={false}
         data={produtos}
         keyExtractor={item=>item.id}
         renderItem={  ({item})=>{
-          return(<Text> {item.id}</Text>)
+          return(<View style={styles.ProdutosFlatlist}> 
+              <View style={styles.StyleProdutos}> 
+                  <View style={styles.icones}> 
+                    <TouchableOpacity onPress={()=>{
+                    deletar(item.id)
+                  }}>
+                  
+                  
+                  <MaterialCommunityIcons name="trash-can" color={'#f92e6a'} size={25}/> 
+                 
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={()=>{
+                    navigation.navigate('Alterar',{
+                      idProduto:item.id,
+                      descricaoNova:item.descricao,
+                      nomeProdutoNovo:item.nome,
+                      precoNovo:item.preco
+                      
+                    })
+                   
+                  }}>
+                  
+                  
+                  <MaterialCommunityIcons name="pencil" color={'#f92e6a'} size={25}/>
+                   
+                  </TouchableOpacity>
+                  
+                  </View>
+                  <View style={styles.StyleInfo}> 
+                    <Text style={styles.textoDados}> {item.nome}</Text>
+                    <View style={styles.iconePreco}>  
+                      <FontAwesomeIcon icon={faBrazilianRealSign}  size={20} color="#7CFC00"/>
+                      <Text style={{fontSize:20,fontWeight:'bold'}}> {item.preco} </Text>
+                    </View>
+                  </View>
+              
+              </View>
+            </View>)
         } }
-      /> 
-       : <Text> texto</Text>}
+      />
       <TouchableOpacity style={styles.ButaoAdd} onPress={()=>{
         navigation.navigate("Cadastrar")
       }}>
        <Text style={styles.texto}>  <MaterialCommunityIcons name="plus" size={30} color="#fff" /> </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.ButaoAddLogout} onPress={()=>logout()}>
+      <TouchableOpacity style={styles.ButaoAddLogout} onPress={logout}>
        <Text style={styles.texto}>  <MaterialCommunityIcons name="logout" size={30} color="#fff" /> </Text>
       </TouchableOpacity>
       
