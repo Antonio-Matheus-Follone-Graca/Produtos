@@ -70,7 +70,7 @@ export default function LoginUsuario({navigation}) {
           
             const errorCode = error.code;
             const errorMessage = error.message;
-            error('senha ou email errados')
+            setError('senha ou email errados')
           });
         
         
