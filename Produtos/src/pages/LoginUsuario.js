@@ -63,10 +63,7 @@ export default function LoginUsuario({navigation}) {
             const user = userCredential.user;
           
             // redireciona para home
-            /*navigation.navigate("Task",{
-                idUser:user.uid // pegando id do usuario logado
-            })*/
-            
+            navigation.navigate("Home")
           })
          
           .catch((error) => {
@@ -84,21 +81,21 @@ export default function LoginUsuario({navigation}) {
  
   }
 
-  /*useEffect(()=>{
+  useEffect(()=>{
     // ao carregar a tela verifica se o usuario esta logado
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
         if (user) { 
           // se o usuario estiver conectado  o rediciona para a home
-          navigation.navigate("Home",{
-            idUser:user.uid, // pegando id do usuario logado
+          navigation.navigate("Home")//{
+           /* idUser:user.uid, // pegando id do usuario logado
             nomeUsuarioLogado:nome,
-        })
+        })*/
         } 
 
     });
 
-},[]);*/
+},[]);
   return (
    
   <KeyboardAvoidingView style={styles.container}

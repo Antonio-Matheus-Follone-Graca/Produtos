@@ -29,8 +29,8 @@ export default function Alterar({navigation,route}){
         preco:precoNovo,
         nome:nomeProduto
     })
-    navigation.navigate('Home')
-      }
+   // navigation.navigate('Home')
+    }
    
     
   

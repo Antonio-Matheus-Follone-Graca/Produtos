@@ -20,11 +20,12 @@ export default function App(){
   return(
     <NavigationContainer>
       <Stack.Navigator initialRouteName="LoginUsuario">
-        
+
         <Stack.Screen name="Home"
           component={Home}
           options={{
-            headerTintColor:'#f92e6a'
+            headerTintColor:'#f92e6a',
+            headerBackVisible:false
           }}
         />
 
