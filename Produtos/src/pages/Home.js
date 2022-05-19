@@ -65,6 +65,8 @@ export default function Home({navigation,route}){
    
         // preenchendo hook dos produtos com a lista do select
         setProdutos(lista)
+        console.log(lista)
+        console.log("rodando")
    
       })
     }
@@ -74,59 +76,14 @@ export default function Home({navigation,route}){
     
   }
   useEffect(()=>{
-    
+    busca()
    },[])
 
    
   return(
     <View style={styles.container}>
       {/* ao tirar a flatlist some o erro*/ }
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={produtos}
-        keyExtractor={item=>item.id}
-        renderItem={  ({item})=>{
-          return(<View style={styles.ProdutosFlatlist}> 
-              <View style={styles.StyleProdutos}> 
-                  <View style={styles.icones}> 
-                    <TouchableOpacity onPress={()=>{
-                    deletar(item.id)
-                  }}>
-                  
-                  
-                  <MaterialCommunityIcons name="trash-can" color={'#f92e6a'} size={25}/> 
-                 
-                  </TouchableOpacity>
-
-                  <TouchableOpacity onPress={()=>{
-                    navigation.navigate('Alterar',{
-                      idProduto:item.id,
-                      descricaoNova:item.descricao,
-                      nomeProdutoNovo:item.nome,
-                      precoNovo:item.preco
-                      
-                    })
-                   
-                  }}>
-                  
-                  
-                  <MaterialCommunityIcons name="pencil" color={'#f92e6a'} size={25}/>
-                   
-                  </TouchableOpacity>
-                  
-                  </View>
-                  <View style={styles.StyleInfo}> 
-                    <Text style={styles.textoDados}> {item.nome}</Text>
-                    <View style={styles.iconePreco}>  
-                      <FontAwesomeIcon icon={faBrazilianRealSign}  size={20} color="#7CFC00"/>
-                      <Text style={{fontSize:20,fontWeight:'bold'}}> {item.preco} </Text>
-                    </View>
-                  </View>
-              
-              </View>
-            </View>)
-        } }
-      />
+      
       <TouchableOpacity style={styles.ButaoAdd} onPress={()=>{
         navigation.navigate("Cadastrar")
       }}>
