@@ -6,7 +6,7 @@ import {
      Text,TouchableOpacity,
       Alert 
   } from 'react-native';
-  
+
 //importação do firebase 
   import db from '../config/db'
   // autenticacao e logout  firebase
@@ -67,7 +67,7 @@ export default function Home({navigation,route}){
   async function busca (){ // FUNCAO DE BUSCA 
     try{
       console.log('comentando codigos dentro do try')
-      /*const consulta=query(collection(db,"produtos"))
+      const consulta=query(collection(db,"produtos"))
       
       const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
         const lista=[]
@@ -81,7 +81,7 @@ export default function Home({navigation,route}){
         console.log(lista)
         console.log("rodando perfeitamente")
    
-      })*/
+      })
     }
     catch(err){
       console.log('erro:'+err)
