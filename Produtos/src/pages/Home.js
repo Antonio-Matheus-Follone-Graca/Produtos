@@ -53,7 +53,7 @@ export default function Home({navigation,route}){
 }
 
   useEffect(()=>{
-    const   aw=query(collection(db,"produtos"))
+    const consulta=query(collection(db,"produtos"))
     const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
       const lista=[]
       // for each do select
@@ -70,7 +70,7 @@ export default function Home({navigation,route}){
    
   return(
     <View style={styles.container}>
-      {/* ao tirar a flatlist some o erro não faco a menor ideia do por quê*/ }
+      {/* ao tirar a flatlist some o erro*/ }
       <FlatList
         showsVerticalScrollIndicator={false}
         data={produtos}
