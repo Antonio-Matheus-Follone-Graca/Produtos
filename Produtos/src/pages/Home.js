@@ -1,14 +1,24 @@
 import React,{useState,useEffect} from 'react';
-import { SafeAreaView, View, FlatList, StyleSheet, Text, StatusBar,TouchableOpacity, Alert } from 'react-native';
-
-import db from '../config/db'
-// autenticacao e logout  firebase
+import {
+    View,
+     FlatList, 
+     StyleSheet,
+     Text,TouchableOpacity,
+      Alert 
+  } from 'react-native';
+  
 //importação do firebase 
+  import db from '../config/db'
+  // autenticacao e logout  firebase
 
-import { getAuth, signOut } from "firebase/auth";
 
-import { collection,  query, onSnapshot,deleteDoc, doc,}  from "firebase/firestore";
+  import { getAuth, signOut } from "firebase/auth";
 
+  import { collection,  query, onSnapshot,deleteDoc, doc,}  from "firebase/firestore";
+// fim importacoes firebase
+
+
+// icones 
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome'
@@ -19,6 +29,7 @@ import {faBrazilianRealSign} from '@fortawesome/free-solid-svg-icons'
 
 export default function Home({navigation,route}){
   const[produtos,setProdutos]=useState([])
+  const[teste,setTeste]=useState('')
 
   const deletar=(idProduto)=>{
     //Alert.alert("produto deletado com sucesso","id:"+idProduto)
@@ -53,9 +64,11 @@ export default function Home({navigation,route}){
 }
 
   // funcao que faz a busca dos dados do documento produtos 
-  async function busca (){
+  async function busca (){ // FUNCAO DE BUSCA 
     try{
-      const consulta=query(collection(db,"produtos"))
+      console.log('comentando codigos dentro do try')
+      /*const consulta=query(collection(db,"produtos"))
+      
       const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
         const lista=[]
         // for each do select
@@ -66,9 +79,9 @@ export default function Home({navigation,route}){
         // preenchendo hook dos produtos com a lista do select
         setProdutos(lista)
         console.log(lista)
-        console.log("rodando")
+        console.log("rodando perfeitamente")
    
-      })
+      })*/
     }
     catch(err){
       console.log('erro:'+err)
@@ -76,14 +89,20 @@ export default function Home({navigation,route}){
     
   }
   useEffect(()=>{
-    busca()
+    busca() 
    },[])
 
    
   return(
     <View style={styles.container}>
       {/* ao tirar a flatlist some o erro*/ }
-      
+      {/*FLATLIST AQUI  */ }
+      <FlatList
+        data={produtos}
+        renderItem={({item})=>{
+          <Text>teste </Text> 
+        }}
+      />
       <TouchableOpacity style={styles.ButaoAdd} onPress={()=>{
         navigation.navigate("Cadastrar")
       }}>
