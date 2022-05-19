@@ -53,7 +53,7 @@ export default function Home({navigation,route}){
 }
 
   useEffect(()=>{
-    const consulta=query(collection(db,"produtos"))
+    const   aw=query(collection(db,"produtos"))
     const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
       const lista=[]
       // for each do select
