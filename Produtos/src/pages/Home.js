@@ -52,19 +52,29 @@ export default function Home({navigation,route}){
     }); 
 }
 
+  // funcao que faz a busca dos dados do documento produtos 
+  async function busca (){
+    try{
+      const consulta=query(collection(db,"produtos"))
+      const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
+        const lista=[]
+        // for each do select
+        QuerySnapshot.forEach(doc => {
+           lista.push({...doc.data(),id:doc.id});
+        });
+   
+        // preenchendo hook dos produtos com a lista do select
+        setProdutos(lista)
+   
+      })
+    }
+    catch(err){
+      console.log('erro:'+err)
+    }
+    
+  }
   useEffect(()=>{
-    const consulta=query(collection(db,"produtos"))
-    const arrays=onSnapshot(consulta,(QuerySnapshot)=>{
-      const lista=[]
-      // for each do select
-      QuerySnapshot.forEach(doc => {
-         lista.push({...doc.data(),id:doc.id});
-      });
- 
-      // preenchendo hook dos produtos com a lista do select
-      setProdutos(lista)
- 
-    })
+    
    },[])
 
    
