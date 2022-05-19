@@ -34,7 +34,7 @@ import { doc, setDoc } from "firebase/firestore";
 
 export default function LoginECadastro({navigation}) {
   // hooks dos campos do formulario 
-  const [email,setEmail]=useState('teste@gmail.com')
+  const [email,setEmail]=useState('teste2@gmail.com')
   const [password,setPassword]=useState('123456')
   const [nome,setNome]=useState('USUARIO TESTE')
   const[error,setError]=useState('')
