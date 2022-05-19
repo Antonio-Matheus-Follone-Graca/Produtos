@@ -6,16 +6,10 @@ import {
   TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
-  Platform
+  Platform,
+  SafeAreaView,
+  Alert
  } from 'react-native';
-
- /* 
-    estou tendo que usar native base para os inputs pois o Text Input do expo não está funcionando no android 
-    
- */ 
-    import {
-      Input
-    } from "native-base";
 
  // importando icones
 
@@ -108,7 +102,6 @@ export default function LoginUsuario({navigation}) {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
      <StatusBar/>
-      <Input type="password" defaultValue="12345" placeholder="password" />
       <Text style={styles.title}> Login </Text>
         
       <TextInput placeholder='Email'
