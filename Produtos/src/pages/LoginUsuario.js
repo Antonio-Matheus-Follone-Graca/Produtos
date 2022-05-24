@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // pois está havendo uma sobreposição do texto á status bar, por isso peguei a altura do status bar e dei um padding top
     // no android usa status bar por isso se a plataforma for android pega  a altura da status bar
-    paddingTop: Platform.OS='android' ? StatusBar.currentHeight : null    
+   
   },
   title:{
     color:'#f92e6a',
