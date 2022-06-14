@@ -99,7 +99,7 @@ export default function LoginUsuario({navigation}) {
   return (
    
   <KeyboardAvoidingView style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
      <StatusBar/>
       <Text style={styles.title}> Login </Text>
@@ -165,8 +165,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     // pois está havendo uma sobreposição do texto á status bar, por isso peguei a altura do status bar e dei um padding top
-    // no android usa status bar por isso se a plataforma for android pega  a altura da status bar
-   
+    // no android usa status bar por isso se a plataforma for android pega  a altura da status bar 
   },
   title:{
     color:'#f92e6a',

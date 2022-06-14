@@ -124,7 +124,7 @@ export default function LoginECadastro({navigation}) {
   return (
    
   <KeyboardAvoidingView style={styles.container}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      behavior={Platform.OS == "ios" ? "padding" : "height"}
     >
      <StatusBar/>
       <Text style={styles.title}> Criar conta </Text>
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     // pois está havendo uma sobreposição do texto á status bar, por isso peguei a altura do status bar e dei um padding top
     // no android usa status bar por isso se a plataforma for android pega  a altura da status bar
-    paddingTop: Platform.OS='android' ? StatusBar.currentHeight : null    
+    paddingTop: Platform.OS =='android' ? StatusBar.currentHeight : 0    
   },
   title:{
     color:'#f92e6a',
